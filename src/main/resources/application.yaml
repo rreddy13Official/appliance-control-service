@@ -1,0 +1,36 @@
+quarkus:
+  dynamodb:
+    aws:
+      region: ${AWS_REGION:eu-west-1}
+
+  # logging configuration
+  log:
+    level: INFO
+
+  jackson:
+    fail-on-empty-beans: false
+
+  swagger-ui:
+    always-include: true
+    path: /swagger
+
+lambdaClient:
+  endpoint: ${LOCALSTACK_URL:notSet}
+  ttl: ${LAMDA_CLIENT_TTL:3600}
+  sts:
+    region: ${AWS_REGION:eu-west-1}
+
+AppliancesStateTable: appliances_state
+
+apiKey: ${API_KEY:notSet}
+
+# Dev profile used when running locally in docker-compose or with gradlew.
+"%dev":
+  quarkus:
+    dynamodb:
+      endpoint-override: ${LOCALSTACK_URL:http://localhost:4569}
+      aws:
+        region: ${AWS_REGION:eu-west-1}
+
+"%test":
+  apiKey: ${API_KEY:test}

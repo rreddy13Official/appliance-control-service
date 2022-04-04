@@ -1,0 +1,27 @@
+{
+ "id": "123",
+  "device": {
+    "serialNumber": "123",
+    "deviceType": "oven",
+    "manufacturer": "elec",
+    "hardwareVersion": "1",
+    "firmwareVersion": "2.2",
+    "batteryLevel": "2",
+    "batteryStatus": "1",
+    "model": "2A3E"
+  },
+  "power": {
+    "minRangeValue": "1",
+    "maxRangeValue": "5",
+    "sensorUnits": "Cel"
+  },
+  "location": {
+    "latitude": "12345.123",
+    "longitude": "23456.2342",
+    "uncertainty": "1"
+  },
+  "manufacture": {
+    "name": "elec",
+    "country": "sweden"
+  }
+}

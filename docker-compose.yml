@@ -1,0 +1,33 @@
+version: "2.4"
+
+services:
+  appliance-control-service:
+    image: appliance-control-service:latest
+    container_name: appliance-control-service
+    environment:
+      - QUARKUS_PROFILE=dev
+      - AWS_SECRET_ACCESS_KEY=test
+      - AWS_ACCESS_KEY_ID=test
+      - AWS_REGION=eu-west-1
+      - LOCALSTACK_URL=http://localstack:4569
+      - API_KEY=853d6a6d-ac97-44ac-aa2e-c0c83c9e1c4d
+    ports:
+      - "8080:8080"
+    # dynamo db database endpint - http://localhost:4569
+  localstack:
+    image: localstack/localstack:0.11.4
+    container_name: appliance-control-service-localstack
+    ports:
+      - "4569:4569"  #Dynamo
+    environment:
+      - SERVICES=dynamodb:4569
+      - DEFAULT_REGION=eu-west-1
+
+  # Access dynamo-db admin GUI @ http://localhost:4570
+  dynamodb-admin:
+    image: aaronshaf/dynamodb-admin
+    container_name: dynamodb-admin-appliance-control-service
+    environment:
+      - DYNAMO_ENDPOINT=http://localstack:4569
+    ports:
+      - "4570:8001"
